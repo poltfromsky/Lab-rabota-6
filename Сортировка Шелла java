@@ -1,0 +1,37 @@
+import java.util.Arrays;
+
+public class Main {
+    /**
+     * Сортировка Шелла (Shell Sort)
+     * Использует последовательность шагов (gap), уменьшающихся вдвое.
+     */
+    public static void shellSort(int[] arr) {
+        int n = arr.length;
+
+        // Начальный интервал — половина массива
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            // Сортируем элементы, стоящие на расстоянии gap
+            for (int i = gap; i < n; i++) {
+                int temp = arr[i];
+                int j = i;
+
+                // Сдвигаем элементы, пока не найдем правильное место для temp
+                while (j >= gap && arr[j - gap] > temp) {
+                    arr[j] = arr[j - gap];
+                    j -= gap;
+                }
+                arr[j] = temp;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, 34, 54, 2, 3};
+
+        System.out.println("Исходный массив: " + Arrays.toString(arr));
+
+        shellSort(arr);
+
+        System.out.println("Отсортированный массив: " + Arrays.toString(arr));
+    }
+}
