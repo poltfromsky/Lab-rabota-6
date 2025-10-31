@@ -1,0 +1,25 @@
+# Быстрая сортировка (Quick Sort)
+# Алгоритм использует принцип "разделяй и властвуй":
+# выбирает опорный элемент, делит массив на две части и рекурсивно сортирует их.
+
+def quick_sort(arr):
+    # Базовый случай: массив из 0 или 1 элемента уже отсортирован
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[len(arr) // 2]  # выбираем опорный элемент (середину)
+    left = [x for x in arr if x < pivot]     # элементы меньше опорного
+    middle = [x for x in arr if x == pivot]  # равные опорному
+    right = [x for x in arr if x > pivot]    # элементы больше опорного
+
+    # Рекурсивно сортируем левую и правую части и объединяем
+    return quick_sort(left) + middle + quick_sort(right)
+
+# Пример использования
+if __name__ == "__main__":
+    arr = [10, 7, 8, 9, 1, 5]
+    print("Исходный массив:", arr)
+
+    sorted_arr = quick_sort(arr)
+
+    print("Отсортированный массив:", sorted_arr)
